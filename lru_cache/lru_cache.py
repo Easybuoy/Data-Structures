@@ -26,7 +26,6 @@ class LRUCache:
 
     def get(self, key):
         if key in self.storage.keys():
-            self.list.move_to_front(self.list.)
             return self.storage[key]
 
         return None
