@@ -26,7 +26,9 @@ class LRUCache:
 
     def get(self, key):
         if key in self.storage.keys():
-            return self.storage[key]
+            node = self.storage[key]
+            self.list.move_to_front(node)
+            return node.value[1]
 
         return None
 
@@ -42,27 +44,24 @@ class LRUCache:
     """
 
     def set(self, key, value):
+        # remove oldest item, then add latest
+        # if limit is reached, remove the oldest entry before adding new one
+        # increment current number of nodes
         if key in self.storage.keys():
-            self.storage[key] = value
-        # if (self.storage[key]):
-        #     print(self.storage[key])
-        #     self.storage[key] = value
-        #     self.list.add_to_head((key, value))
+            node = self.storage[key]
+            node.value = (key, value)
+            self.list.move_to_front(node)
+            return
         else:
-
-            # print(self.stora[key])
             if (self.currentNumberOfNode < self.limit):
                 self.list.add_to_head((key, value))
-                self.storage[key] = value
+                self.storage[key] = self.list.head
                 self.currentNumberOfNode += 1
             else:
+                del self.storage[self.list.tail.value[0]]
                 self.list.remove_from_tail()
                 self.list.add_to_head((key, value))
-                self.storage[key] = value
-                self.currentNumberOfNode += 1
+                self.storage[key] = self.list.head
+                
 
-                # remove oldest item, then add latest
-            # if (self.)
-            # if limit is reached, remove the oldest entry before adding new one
-            # increment current number of nodes
-
+            
