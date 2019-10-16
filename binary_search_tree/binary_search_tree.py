@@ -25,7 +25,6 @@ class BinarySearchTree:
             else:
                 self.right.insert(value)
 
-
     # Return True if the tree contains the value
     # False if it does not
 
@@ -61,12 +60,18 @@ class BinarySearchTree:
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
     def for_each(self, cb):
-        pass
+        if self.value != None:
+            cb(self.value)
+        if self.left != None:
+            self.left.for_each(cb)
+        if self.right != None:
+            self.right.for_each(cb)
 
     # DAY 2 Project -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
+
     def in_order_print(self, node):
         pass
 
