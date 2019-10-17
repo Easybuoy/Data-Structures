@@ -1,7 +1,7 @@
-# from dll_stack import Stack
-# from dll_queue import Queue
-# import sys
-# sys.path.append('../queue_and_stack')
+from dll_stack import Stack
+from dll_queue import Queue
+import sys
+sys.path.append('../queue_and_stack')
 
 
 class BinarySearchTree:
@@ -78,12 +78,20 @@ class BinarySearchTree:
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        q = Queue()
+        q.enqueue(self.value)
+        while q:
+            q.dequeue()
+            print(self.value)
+            if (self.left):
+                q.enqueue(self.left.value)
+            if (self.right):
+                q.enqueue(self.right.value)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        s = Stack()
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
